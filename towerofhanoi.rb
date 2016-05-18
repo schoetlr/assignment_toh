@@ -1,7 +1,12 @@
 class TowerOfHanoi
-  attr_reader :towers
-  def initialize
-    @towers = [ [3,2,1], [], [] ]
+  attr_reader :towers, :height
+  def initialize(height = 3)
+    @height = height
+    @towers = [ [], [], [] ]
+    (1..height).each do |disc|
+      @towers[0] << disc
+    end
+    @towers[0] = @towers[0].reverse
   end
 
   def play
@@ -40,7 +45,7 @@ class TowerOfHanoi
   end
 
   def won?
-    if towers[1].count == 3 || towers[2].count == 3
+    if towers[1].count == height || towers[2].count == height
       return true
     else 
       return false
